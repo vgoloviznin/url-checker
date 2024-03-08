@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  db:
+    image: "postgres:latest"
+    restart: "always"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+  app:
+    image: "node:alpine"
+    build: 
+      dockerfile: Dockerfile.app
+    depends_on:
+      - db
+    restart: "always"
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=db
+      - PORT=3000
+    volumes:
+      - ./src:/app/src
