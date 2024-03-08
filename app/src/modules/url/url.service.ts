@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUrl } from './dto/create-url.dto';
 import { LessThan, Repository } from 'typeorm';
-import { UrlEntity } from 'src/models/url.entity';
+import { UrlEntity } from '../../models/url.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import axios from 'axios';
 
